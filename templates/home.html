@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Inventory</title>
+</head>
+<body>
+<ul>
+    <a href="{% url "categories" %}">
+        Categories
+    </a>
+    <a href="{% url "brand" %}">
+        Brands
+    </a>
+    <a href="{% url "create-product" %}">
+        Create Product
+    </a>
+    <a href="{% url "create-brand" %}">
+        Create Brand
+    </a>
+    <a href="{% url "create-category" %}">
+        Create Category
+    </a>
+    {% for product in products %}
+        <li>
+            {{ product.name }}
+            <img src="/media/{{ product.image }}">
+            <h1>
+                Brand Name : {{ product.brand.brand_name }}
+            </h1>
+            <h1>
+                Category Name : {{ product.category.category_name }}
+            </h1>
+        </li>
+    {% empty %}
+        <h1>No products presents</h1>
+    {% endfor %}
+</ul>
+</body>
+</html>
