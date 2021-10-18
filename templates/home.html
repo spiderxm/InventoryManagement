@@ -50,14 +50,13 @@
         }
 
 
-
         img {
             width: 190px;
             border-radius: 5px;
         }
 
         .img-bx {
-             width: 100%;
+            width: 100%;
             height: 220px;
             border-radius: 8px;
             display: flex;
@@ -82,7 +81,8 @@
             text-decoration: none;
             color: #02bebe !important;
         }
-        .link:hover{
+
+        .link:hover {
             color: #008888 !important;
         }
 
@@ -102,71 +102,28 @@
             color: #02bebe !important;
             font-size: 20px;
         }
-    .empty{
-        width: 100%;
-        height: 80vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 48px;
-        font-weight: lighter;
-        text-transform: uppercase;
-        letter-spacing: 0.2em;
-    }
+
+        .empty {
+            width: 100%;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: lighter;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
     </style>
 </head>
 <body>
 
-
-<nav class="navbar navbar-dark bg-dark  ">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">Inventory</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Inventory Dashboard</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">
-                            Home
-                        </a>
-                    <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="{% url "categories" %}">
-                            Categories
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url "brand" %}">
-                            Brands</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url "create-product" %}">
-                            Create Product
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="{% url "create-brand" %}">
-                            Create Brand</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="{% url "create-category" %}">
-                            Create Category
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </div>
-</nav>
+{% include 'navbar.html' %}
+<h1 style="text-align: center; font-family: monospace">
+        Products
+    </h1>
 <main class="container mt-5">
+
     {% for product in products %}
 
         <div class="prod-card">
@@ -179,7 +136,8 @@
                 <h5 class="brand">Category: {{ product.brand.brand_name }}</h5>
                 <h5 class="quantity">Stock: {{ product.quantity }}</h5>
             </div>
-            <a href="#" class="link">More Details →</a>
+            <a href="{% url 'product-detail' product.id %}" class="link">More Details →</a>
+            <a href="{% url 'product-delete' product.id %}" class="link">Delete →</a>
 
         </div>
     {% empty %}

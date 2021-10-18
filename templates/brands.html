@@ -45,7 +45,7 @@
             box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
             transform: scale(0.8);
             transition: all 250ms ease-in-out;
-                          text-transform: capitalize;
+            text-transform: capitalize;
 
         }
 
@@ -96,55 +96,10 @@
     </style>
 </head>
 <body>
-
-<nav class="navbar navbar-dark bg-dark  ">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">Inventory</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Inventory Dashboard</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="/">
-                            Home
-                        </a>
-                    <li class="nav-item">
-                        <a class="nav-link  " aria-current="page" href="{% url "categories" %}">
-                            Categories
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url "brand" %}">
-                            Brands</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url "create-product" %}">
-                            Create Product
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="{% url "create-brand" %}">
-                            Create Brand</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="{% url "create-category" %}">
-                            Create Category
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </div>
-</nav>
+{% include 'navbar.html' %}
+<h1 style="text-align: center; font-family: monospace">
+    Brands
+</h1>
 <main class="container mt-5">
 
     {% for brand in brands %}
@@ -154,7 +109,7 @@
 
             </div>
             <h2 class="title">{{ brand.brand_name }}</h2>
-            <a href="#" class="link">View Items →</a>
+            <a href="{% url 'product-detail-brand' brand.id %}" class="link">View Items →</a>
         </div>
 
     {% empty %}

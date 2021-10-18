@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from .models import Product, Category, Brand
+from .models import Product, Category, Brand, Developer
 from .forms import ProductForm, BrandForm, CategoryForm
 from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404
 
 
 def homePageView(request):
@@ -91,3 +92,54 @@ def createCategory(request):
     else:
         form = CategoryForm()
     return render(request, 'create-category.html', {'form': form})
+
+
+def productDetailView(request, id):
+    """
+    Product Detail View
+    """
+    product = get_object_or_404(Product, pk=id)
+    return render(request, "product-details.html", {"product": product})
+
+
+def deleteProductDetailView(request, id):
+    """
+    Product Delete View
+    """
+    if request.method == "GET":
+        product = get_object_or_404(Product, pk=id)
+        return render(request, "product-delete.html", {"product": product})
+
+    if request.method == "POST":
+        product = get_object_or_404(Product, pk=id)
+        product.delete()
+        return redirect("/")
+
+
+def productsByBrandDetailView(request, id):
+    """
+    Product Detail View by brand
+    """
+    brand = get_object_or_404(Brand, pk=id)
+    products = Product.objects.all().filter(brand=brand)
+    return render(request, "brand-products.html", {"products": products})
+
+
+def productsByCategoryDetailView(request, id):
+    """
+    Product Detail View by category
+    """
+    category = get_object_or_404(Category, pk=id)
+    products = Product.objects.all().filter(category=category)
+    return render(request, "category-products.html", {"products": products})
+
+
+def developersPageView(request):
+    """
+    Developers Page View
+    """
+    developers = Developer.objects.all()
+
+    return render(request=request, template_name="developers.html", context={
+        "developers": developers
+    })

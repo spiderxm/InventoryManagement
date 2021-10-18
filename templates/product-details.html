@@ -13,21 +13,7 @@
             background-color: #fafafa;
         }
 
-        .navbar {
-            background-color: #000 !important;
-        }
 
-        .nav-link {
-            color: #111 !important;
-        }
-
-        .nav-link.active {
-            color: #02bebe !important;
-        }
-
-        .nav-link:hover {
-            color: #02bebe !important;
-        }
 
         main {
             display: flex;
@@ -95,24 +81,34 @@
     </style>
 </head>
 <body>
+
 {% include 'navbar.html' %}
-<h1 style="text-align: center; font-family: monospace">
-    Categories
-</h1>
 <main class="container mt-5">
 
-    {% for category in categories %}
-        <div class="cat-card">
-            <div class="img-bx">
-                <img src="/media/{{ category.category_image }}" alt="category image">
-            </div>
-            <h2 class="title">{{ category.category_name }}</h2>
-            <a href="{% url "product-detail-category" category.id %}" class="link">View Items →</a>
-        </div>
+    <div class="cat-card">
 
-    {% empty %}
-        <h1 class="empty">No categories presents</h1>
-    {% endfor %}
+        <div class="prod-card">
+            <div class="img-bx"><img alt="Product image" src="/media/{{ product.image }}"></div>
+            <div class="heading">
+                <h2 class="title">{{ product.name }}</h2>
+                <h2 class="price">₹{{ product.price }}</h2>
+            </div>
+            <div class="content">
+                <h5 class="quantity">Stock: {{ product.quantity }}</h5>
+            </div>
+        </div>
+        <h1>Category</h1>
+        <div class="img-bx">
+            <img src="/media/{{ product.category.category_image }}" alt="category image">
+        </div>
+        <h2 class="title">{{ product.category.category_name }}</h2>
+
+        <h1>Brand</h1>
+        <div class="img-bx">
+            <img src="/media/{{ product.brand.brand_image }}" alt="category image">
+        </div>
+        <h2 class="title">{{ product.brand.brand_name }}</h2>
+    </div>
 
 </main>
 <script>

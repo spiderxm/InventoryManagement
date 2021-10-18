@@ -42,3 +42,14 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+class Developer(models.Model):
+    """
+    Model to store developers
+    """
+    name = models.CharField(max_length=256)
+    image = models.ImageField(upload_to="products/")
+    rollNo = models.CharField(max_length=256)
+
+    def __str__(self):
+        return self.name
