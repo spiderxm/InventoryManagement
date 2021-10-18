@@ -33,7 +33,7 @@ class Product(models.Model):
         validators=[MinValueValidator(limit_value=0, message="Quantity cannot be less than 0")])
     description = models.TextField(max_length=2056)
     image = models.ImageField(upload_to="products/")
-    price = models.DecimalField(decimal_places=4, max_digits=10)
+    price = models.DecimalField(decimal_places=1, max_digits=10)
     brand = models.ForeignKey(to=Brand, on_delete=models.CASCADE)
     category = models.ForeignKey(to=Category, on_delete=models.CASCADE)
 

@@ -17,7 +17,7 @@ def homePageView(request):
 
 def categoriesPageView(request):
     """
-    Home Page View
+    Categories Page View
     """
     category = Category.objects.all()
 
@@ -28,7 +28,7 @@ def categoriesPageView(request):
 
 def brandsPageView(request):
     """
-    Home Page View
+    Brand Page View
     """
     brands = Brand.objects.all()
 
