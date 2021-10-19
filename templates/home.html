@@ -16,22 +16,6 @@
             min-height: 100vh;
         }
 
-        .navbar {
-            background-color: #000 !important;
-        }
-
-        .nav-link {
-            color: #111 !important;
-        }
-
-        .nav-link.active {
-            color: #02bebe !important;
-        }
-
-        .nav-link:hover {
-            color: #02bebe !important;
-        }
-
         main {
             display: flex;
             justify-content: space-evenly;
@@ -79,11 +63,11 @@
 
         .link {
             text-decoration: none;
-            color: #02bebe !important;
+            color: #02bebe;
         }
 
         .link:hover {
-            color: #008888 !important;
+            color: #008888;
         }
 
         .content h5 {
@@ -114,19 +98,27 @@
             text-transform: uppercase;
             letter-spacing: 0.2em;
         }
+
+        .delete {
+            color: red;
+        }
+
+        .delete:hover {
+            color: #980000;
+        }
     </style>
 </head>
 <body>
 
 {% include 'navbar.html' %}
 <h1 style="text-align: center; font-family: monospace">
-        Products
-    </h1>
-<main class="container mt-5">
+    Products
+</h1>
+<main class="container mt-4 mb-3">
 
     {% for product in products %}
 
-        <div class="prod-card">
+        <div class="prod-card  mb-3">
             <div class="img-bx"><img alt="Product image" src="/media/{{ product.image }}"></div>
             <div class="heading">
                 <h2 class="title">{{ product.name }}</h2>
@@ -136,8 +128,8 @@
                 <h5 class="brand">Category: {{ product.brand.brand_name }}</h5>
                 <h5 class="quantity">Stock: {{ product.quantity }}</h5>
             </div>
-            <a href="{% url 'product-detail' product.id %}" class="link">More Details →</a>
-            <a href="{% url 'product-delete' product.id %}" class="link">Delete →</a>
+            <a href="{% url 'product-detail' product.id %}" class="link">View Product →</a>
+{#            <a href="{% url 'product-delete' product.id %}" class="link delete">Delete</a>#}
 
         </div>
     {% empty %}
