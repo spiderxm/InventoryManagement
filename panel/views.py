@@ -5,14 +5,24 @@ from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
 
 
+def detailsPageView(request):
+    """
+    Details Page View
+    """
+    return render(request=request, template_name="details.html")
+
+
 def homePageView(request):
     """
     Home Page View
     """
     products = Product.objects.all()
-
+    searchKey = request.GET.get('search', None)
+    if searchKey:
+        products = products.filter(name__contains=searchKey)
     return render(request=request, template_name="home.html", context={
-        "products": products
+        "products": products,
+        "searchform": True
     })
 
 
@@ -21,9 +31,12 @@ def categoriesPageView(request):
     Categories Page View
     """
     category = Category.objects.all()
-
+    searchKey = request.GET.get('search', None)
+    if searchKey:
+        category = category.filter(category_name__contains=searchKey)
     return render(request=request, template_name="categories.html", context={
-        "categories": category
+        "categories": category,
+        "searchform": True
     })
 
 
@@ -32,9 +45,12 @@ def brandsPageView(request):
     Brand Page View
     """
     brands = Brand.objects.all()
-
+    searchKey = request.GET.get('search', None)
+    if searchKey:
+        brands = brands.filter(brand_name__contains=searchKey)
     return render(request=request, template_name="brands.html", context={
-        "brands": brands
+        "brands": brands,
+        "searchform": True
     })
 
 
@@ -143,3 +159,26 @@ def developersPageView(request):
     return render(request=request, template_name="developers.html", context={
         "developers": developers
     })
+
+
+def updateProduct(request, id):
+    """
+    Update Product View
+    """
+    product = get_object_or_404(Product, pk=id)
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        product.name = form.data['name']
+        product.description = form.data['description']
+        product.quantity = form.data['quantity']
+        product.brand_id = form.data['brand']
+        product.category_id = form.data['category']
+        product.price = form.data['price']
+        if 'image' in request.FILES:
+            print(23)
+            product.image = request.FILES['image']
+        product.save()
+        return redirect("/")
+    else:
+        form = ProductForm(instance=product)
+    return render(request, 'create-product.html', {'form': form})

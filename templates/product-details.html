@@ -155,7 +155,7 @@
             <img src="/media/{{ product.brand.brand_image }}" alt="category image">
         </div>
         <div class="btn-group">
-            <a href="#" class="button disabled">Edit Product ✏</a>
+            <a href="{% url 'product-edit' product.id %}" class="button">Edit Product ✏</a>
             <a href="{% url 'product-delete' product.id %}" class="button  delete">Delete 🗑</a>
         </div>
     </div>

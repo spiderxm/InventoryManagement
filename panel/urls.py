@@ -1,5 +1,7 @@
 from django.urls import path
-from .views import homePageView, categoriesPageView, brandsPageView, createProduct, createBrand, createCategory, productDetailView, productsByBrandDetailView, productsByCategoryDetailView, deleteProductDetailView, developersPageView
+from .views import homePageView, categoriesPageView, brandsPageView, createProduct, createBrand, createCategory, \
+    productDetailView, productsByBrandDetailView, productsByCategoryDetailView, deleteProductDetailView, \
+    developersPageView, updateProduct, detailsPageView
 
 urlpatterns = [
     path('', homePageView),
@@ -12,6 +14,7 @@ urlpatterns = [
     path('products/brand/<str:id>', productsByBrandDetailView, name="product-detail-brand"),
     path('products/category/<str:id>', productsByCategoryDetailView, name="product-detail-category"),
     path('product-delete/<str:id>', deleteProductDetailView, name="product-delete"),
-    path('developers/',developersPageView, name="developers" )
-
+    path('product-edit/<str:id>', updateProduct, name="product-edit"),
+    path('developers/', developersPageView, name="developers"),
+    path('project-details/', detailsPageView, name="project-details")
 ]
