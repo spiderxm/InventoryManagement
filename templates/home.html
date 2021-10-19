@@ -125,7 +125,7 @@
                 <h2 class="price">₹{{ product.price }}</h2>
             </div>
             <div class="content">
-                <h5 class="brand">Category: {{ product.brand.brand_name }}</h5>
+                <h5 class="brand">Brand: {{ product.brand.brand_name }}</h5>
                 <h5 class="quantity">Stock: {{ product.quantity }}</h5>
             </div>
             <a href="{% url 'product-detail' product.id %}" class="link">View Product →</a>
