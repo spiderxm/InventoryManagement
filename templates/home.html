@@ -36,7 +36,8 @@
 
         img {
             width: 190px;
-            border-radius: 5px;
+            height: 190px;
+            border-radius: 5px;object-fit: contain;
         }
 
         .img-bx {
@@ -99,13 +100,7 @@
             letter-spacing: 0.2em;
         }
 
-        .delete {
-            color: red;
-        }
 
-        .delete:hover {
-            color: #980000;
-        }
     </style>
 </head>
 <body>
@@ -115,7 +110,6 @@
     Products
 </h1>
 <main class="container mt-4 mb-3">
-
     {% for product in products %}
 
         <div class="prod-card  mb-3">
@@ -129,7 +123,6 @@
                 <h5 class="quantity">Stock: {{ product.quantity }}</h5>
             </div>
             <a href="{% url 'product-detail' product.id %}" class="link">View Product →</a>
-{#            <a href="{% url 'product-delete' product.id %}" class="link delete">Delete</a>#}
 
         </div>
     {% empty %}

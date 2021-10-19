@@ -17,21 +17,26 @@
         }
 
         .logo{
+            height: 50px;
             width: 100px;
-            height: 80px;
+        }
+
+        .search{
+            width: 70%;
         }
 
     </style>
 </head>
 <nav class="navbar navbar-dark bg-dark  ">
     <div class="container-fluid">
-        <img src="/media/details/logo.png" class="logo">
+        <img src="/media/details/logo.svg" class="logo">
 
 {#        <a class="navbar-brand" href="/">Inventory</a>#}
 
         {% if searchform %}
-            <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+            <form class="form-inline search">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search 🔎" aria-label="Search" name="search">
+
             </form>
         {% endif %}
 
