@@ -43,6 +43,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+
 class Developer(models.Model):
     """
     Model to store developers

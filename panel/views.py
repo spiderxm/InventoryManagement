@@ -138,7 +138,13 @@ def productsByBrandDetailView(request, id):
     """
     brand = get_object_or_404(Brand, pk=id)
     products = Product.objects.all().filter(brand=brand)
-    return render(request, "brand-products.html", {"products": products})
+    searchKey = request.GET.get('search', None)
+    if searchKey:
+        products = products.filter(name__contains=searchKey )
+    return render(request, "brand-products.html", context={
+        "products": products,
+        "searchform": True
+    })
 
 
 def productsByCategoryDetailView(request, id):
@@ -147,7 +153,13 @@ def productsByCategoryDetailView(request, id):
     """
     category = get_object_or_404(Category, pk=id)
     products = Product.objects.all().filter(category=category)
-    return render(request, "category-products.html", {"products": products})
+    searchKey = request.GET.get('search', None)
+    if searchKey:
+        products = products.filter(name__contains=searchKey)
+    return render(request, "category-products.html", context={
+        "products": products,
+        "searchform": True
+    })
 
 
 def developersPageView(request):
