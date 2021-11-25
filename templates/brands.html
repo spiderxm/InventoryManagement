@@ -40,11 +40,11 @@
 
         }
 
-        img {
+        .img {
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            object-fit: contain ;
+            object-fit: z ;
         }
 
         .img-bx {
@@ -91,7 +91,7 @@
     {% for brand in brands %}
         <div class="cat-card">
             <div class="img-bx">
-                <img src="/media/{{ brand.brand_image }}" alt=brand images">
+                <img src="/media/{{ brand.brand_image }}" alt="brand images" class="img">
 
             </div>
             <h2 class="title">{{ brand.brand_name }}</h2>
